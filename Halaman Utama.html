@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selamat Datang</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .bg {
+      background: linear-gradient(to right, #009688, #004d40);
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .btn-start {
+      margin-top: 10px;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ffffff;
+      color: #004d40;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-start:hover {
+      background-color: #004d40;
+      color: #ffffff;
+    }
+
+    /* Style modal login */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      color: black;
+      text-align: left;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+    }
+
+    .modal-content input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .modal-content .btn-start {
+      width: 100%;
+    }
+
+    .close {
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg">
+  <h1 class="w3-animate-top">Selamat Datang di Website Kami</h1>
+  <p class="w3-animate-opacity">Temukan informasi terbaik tentang pengalaman, keahlian, dan karya kami di sini.</p>
+
+  <button class="btn-start" onclick="location.href='Jelajahi.html'">Jelajahi Website Kami</button>
+  <button class="btn-start" onclick="openModal()">Pasukan Bantai LBM</button>
+  <button class="btn-start" onclick="location.href='delegasi.html'">Kotak Data Delegasi</button>
+  <button class="btn-start" onclick="location.href='halamanrumusan.html'">Maktabah LBM</button>
+</div>
+
+<!-- Modal Login -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Login Akses</h2>
+    <input type="email" id="email" placeholder="Masukkan Email">
+    <input type="password" id="password" placeholder="Masukkan Password">
+    <button class="btn-start" onclick="checkLogin()">Masuk</button>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById("loginModal").style.display = "block";
+
+    // Fokus ke input email saat modal muncul
+    setTimeout(() => {
+      document.getElementById("email").focus();
+    }, 100);
+  }
+
+  function closeModal() {
+    document.getElementById("loginModal").style.display = "none";
+  }
+
+  function checkLogin() {
+    const emailValid = "123";
+    const passValid = "123";
+
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+
+    if (email === emailValid && pass === passValid) {
+      window.location.href = "Pasukan Bantai LBM.html";
+    } else {
+      alert("Email atau Password salah!");
+    }
+  }
+
+  // Tutup modal kalau klik di luar area form
+  window.onclick = function(event) {
+    const modal = document.getElementById("loginModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // Tambahkan listener untuk tekan Enter
+  document.addEventListener("keydown", function(event) {
+    const modal = document.getElementById("loginModal");
+    if (modal.style.display === "block" && event.key === "Enter") {
+      checkLogin();
+    }
+  });
+</script>
+
+</body>
+</html>

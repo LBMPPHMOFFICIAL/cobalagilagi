@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LBM PPHM OFFICIAL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #026937;
+      color: white;
+      padding: 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav h1 {
+      font-size: 1.7rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      height: 400px;
+      display: flex;
+      align-items: flex-end;
+      color: white;
+    }
+
+    .hero h2 {
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      font-size: 2rem;
+      width: 100%;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      padding: 30px;
+    }
+
+    .main-news, .sidebar {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .main-news h3, .sidebar h3 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      color: #026937;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    .main-news article {
+      margin-bottom: 25px;
+    }
+
+    .main-news img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .main-news h4 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #222;
+    }
+
+    .main-news p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .sidebar ul li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.95rem;
+    }
+
+    #tentang {
+      background-color: #fff;
+      padding: 60px 30px;
+    }
+
+    #tentang .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    #tentang img {
+      flex: 1;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #tentang .text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    #tentang h2 {
+      color: #026937;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    #tentang p {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      #tentang .content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1>LBM PPHM OFFICIAL</h1>
+      <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Berita</a></li>
+        <li><a href="#">Kajian</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2 data-aos="fade-up">Fatwa Ulama Tentang Digitalisasi Ekonomi Syariah</h2>
+  </section>
+
+  <section class="container">
+    <div class="main-news" data-aos="fade-right">
+      <h3>Berita Terbaru</h3>
+      <article>
+        <img src="https://images.unsplash.com/photo-1509228627152-72ae9ae6848c?auto=format&fit=crop&w=800&q=80" alt="Berita 1">
+        <h4>Musyawarah LBM Bahas Fikih Lingkungan</h4>
+        <p>LBM membahas peran fikih dalam menjaga lingkungan sebagai bagian dari maqashid syariah.</p>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1559027615-cdcbf75b63c4?auto=format&fit=crop&w=800&q=80" alt="Berita 2">
+        <h4>Pentingnya Mempelajari Kitab Turats di Era Modern</h4>
+        <p>Kajian kitab kuning tetap relevan untuk menjawab tantangan zaman modern.</p>
+      </article>
+    </div>
+
+    <aside class="sidebar" data-aos="fade-left">
+      <h3>Kategori</h3>
+      <ul>
+        <li>📚 Bahtsul Masail</li>
+        <li>🕌 Kajian Kitab</li>
+        <li>💻 Fikih Digital</li>
+        <li>👨‍🏫 Tokoh Ulama</li>
+        <li>📅 Agenda & Kegiatan</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section id="tentang">
+    <div class="content">
+      <img src="https://www.nu.or.id/storage/images/news/2023/09/14/10cf3c9d1e5e92c279ccbb7f0c8e8d97.jpeg" alt="LBM PPHM" data-aos="zoom-in">
+      <div class="text" data-aos="fade-left">
+        <h2>Tentang LBM PPHM</h2>
+        <p>LBM PPHM (Lajnah Bahtsul Masail Pondok Pesantren Hidayatul Mubtadiin) adalah forum resmi yang bernaung di bawah pondok Lirboyo Kota Kediri. LBM menjadi tempat para santri dan asatidz berdiskusi mengenai persoalan keagamaan kontemporer.</p>
+        <p>Kegiatan LBM meliputi bahtsul masail, diskusi ilmiah, pengkajian kitab turats, serta penulisan hasil musyawarah yang dibagikan ke masyarakat sebagai bentuk kontribusi keilmuan pesantren.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 LBM PPHM OFFICIAL | Terinspirasi oleh NU Online</p>
+  </footer>
+
+  <!-- Script AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>

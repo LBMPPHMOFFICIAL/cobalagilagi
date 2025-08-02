@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Data Berdasarkan Kategori</title>
+    <style>
+        /* Gaya CSS tidak berubah dari yang sebelumnya, fokus pada fungsionalitas */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-color: #343a40;
+            --border-color: #dee2e6;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 40px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--card-background);
+            appearance: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-select:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        .result-title {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+
+        #result-container {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--background-color);
+        }
+        
+        #result-container p {
+            margin: 0;
+            color: var(--secondary-color);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* Gaya untuk daftar judul */
+        .title-list li {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--card-background);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            cursor: pointer;
+        }
+
+        .title-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--shadow-color);
+        }
+        
+        /* Gaya untuk detail dokumen */
+        #detail-container {
+            margin-top: 20px;
+        }
+
+        .detail-card {
+            padding: 20px;
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        .detail-title {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .detail-description {
+            font-size: 1em;
+            color: var(--text-color);
+            line-height: 1.8;
+            white-space: pre-wrap; /* Mempertahankan format baris baru */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="header">Daftar Data</h1>
+        
+        <div class="form-group">
+            <label for="kategori" class="form-label">Pilih Kategori</label>
+            <select id="kategori" class="form-select">
+                <option value="">-- Pilih Kategori --</option>
+                <optgroup label="SEPUTAR AL-QUR'AN">
+                    <option value="TAJWID">TAJWID</option>
+                    <option value="TAFSIR">TAFSIR</option>
+                </optgroup>
+                <option value="AL-HADIST">AL-HADIST</option>
+                <option value="AQIDAH">AQIDAH</option>
+                <option value="THAHARAH">THAHARAH</option>
+                <option value="SHALAT">SHALAT</option>
+                <option value="ZAKAT INFAQ SHODAQOH">ZAKAT INFAQ SHODAQOH</option>
+                <option value="PUASA">PUASA</option>
+                <option value="HAJI">HAJI</option>
+                <option value="MU'AMALAH">MU'AMALAH</option>
+                <option value="MUNAKAHAT">MUNAKAHAT</option>
+                <option value="KELUARGA">KELUARGA</option>
+                <option value="MUSLIMAH">MUSLIMAH</option>
+                <option value="JANAZAH">JANAZAH</option>
+                <option value="MAWARITS">MAWARITS</option>
+                <option value="WAQAF">WAQAF</option>
+                <option value="MAKANAN & MINUMAN">MAKANAN & MINUMAN</option>
+                <option value="UDHKHIYYAH">UDHKHIYYAH</option>
+                <option value="HEWAN">HEWAN</option>
+                <option value="SUMPAH & NADZAR">SUMPAH & NADZAR</option>
+                <option value="JINAYAT - HUDUD - JIHAD">JINAYAT - HUDUD - JIHAD</option>
+                <option value="KONTEMPORER">KONTEMPORER</option>
+                <option value="USHUL FIQIH">USHUL FIQIH</option>
+                <option value="SIYASAH & KEBANGSAAN">SIYASAH & KEBANGSAAN</option>
+                <option value="ADAB DAN AKHLAQ">ADAB DAN AKHLAQ</option>
+                <option value="TASHAWUF">TASHAWUF</option>
+                <option value="DOA WIRID SHOLAWAT & DZIKIR">DOA WIRID SHOLAWAT & DZIKIR</option>
+                <option value="FADHOILUL A'MAAL">FADHOILUL A'MAAL</option>
+                <option value="TARIKH">TARIKH</option>
+                <option value="KITAB KUNING">KITAB KUNING</option>
+                <option value="MAKALAH ASWAJA">MAKALAH ASWAJA</option>
+                <option value="HIKMAH">HIKMAH</option>
+                <option value="ILMU ALAT">ILMU ALMU</option>
+                <optgroup label="SERBA SERBI">
+                    <option value="MAKAN">MAKAN</option>
+                    <option value="MINUM">MINUM</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <h2 class="result-title">Hasil Pencarian</h2>
+        <div id="result-container">
+            <p>Silakan pilih kategori di atas untuk melihat hasilnya.</p>
+        </div>
+        
+        <div id="detail-container">
+            </div>
+    </div>
+
+    <script type="module">
+        // Impor modul yang dibutuhkan dari Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { 
+            getFirestore, 
+            collection, 
+            getDocs, 
+            query, 
+            where 
+        } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+        // Konfigurasi aplikasi web Firebase Anda
+        const firebaseConfig = {
+            apiKey: "AIzaSyDkvA4SIGA5kLDBU8heWIqh4QqT5faYbeA",
+            authDomain: "maktabah-indonesia.firebaseapp.com",
+            projectId: "maktabah-indonesia",
+            storageBucket: "maktabah-indonesia.appspot.com",
+            messagingSenderId: "496360715757",
+            appId: "1:496360715757:web:3d562e20fddf2177a663e4",
+            measurementId: "G-JLLGSXPPQ4"
+        };
+        
+        // Inisialisasi Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Referensi ke elemen HTML
+        const selectElement = document.getElementById('kategori');
+        const resultContainer = document.getElementById('result-container');
+        const detailContainer = document.getElementById('detail-container');
+        
+        // Sebuah variabel global untuk menyimpan semua data yang diambil
+        let allData = [];
+
+        // Fungsi untuk mengambil data berdasarkan kategori dan menampilkan daftar judul
+        async function fetchTitlesByCategory(selectedCategory) {
+            resultContainer.innerHTML = '<p>Memuat...</p>';
+            detailContainer.innerHTML = ''; // Kosongkan detail saat kategori berubah
+
+            if (!selectedCategory) {
+                resultContainer.innerHTML = '<p>Silakan pilih kategori di atas untuk melihat hasilnya.</p>';
+                return;
+            }
+
+            try {
+                const masalahCollectionRef = collection(db, 'masalah');
+                const q = query(masalahCollectionRef, where("kategori", "==", selectedCategory));
+                
+                const querySnapshot = await getDocs(q);
+                
+                if (querySnapshot.empty) {
+                    resultContainer.innerHTML = `<p>Tidak ada data untuk kategori "${selectedCategory}".</p>`;
+                    allData = []; // Reset data
+                    return;
+                }
+
+                // Simpan data di variabel global
+                allData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+                const titleList = document.createElement('ul');
+                titleList.className = 'title-list'; // Tambahkan kelas baru
+                
+                allData.forEach(data => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = data.judul || 'Judul tidak tersedia';
+                    listItem.setAttribute('data-id', data.id); // Simpan ID dokumen di elemen
+                    
+                    // Tambahkan event listener untuk setiap judul
+                    listItem.addEventListener('click', () => {
+                        showDocumentDetail(data.id);
+                    });
+
+                    titleList.appendChild(listItem);
+                });
+                
+                resultContainer.innerHTML = '';
+                resultContainer.appendChild(titleList);
+
+            } catch (error) {
+                console.error("Gagal mengambil data berdasarkan kategori:", error);
+                resultContainer.innerHTML = '<p style="color:red;">Terjadi kesalahan saat memuat data.</p>';
+            }
+        }
+        
+        // Fungsi untuk menampilkan detail dokumen yang dipilih
+        function showDocumentDetail(docId) {
+            // Cari data yang sesuai di array global
+            const docData = allData.find(data => data.id === docId);
+
+            if (!docData) {
+                detailContainer.innerHTML = '<p style="color:red;">Data tidak ditemukan.</p>';
+                return;
+            }
+
+            // Bangun elemen HTML untuk menampilkan detail
+            detailContainer.innerHTML = `
+                <div class="detail-card">
+                    <h3 class="detail-title">${docData.judul || 'Judul tidak tersedia'}</h3>
+                    <p class="detail-description">${docData.deskripsi || 'Deskripsi tidak tersedia'}</p>
+                </div>
+            `;
+        }
+
+        // Tambahkan event listener untuk mendeteksi perubahan pada dropdown
+        selectElement.addEventListener('change', (event) => {
+            const selectedCategory = event.target.value;
+            fetchTitlesByCategory(selectedCategory);
+        });
+    </script>
+</body>
+</html>

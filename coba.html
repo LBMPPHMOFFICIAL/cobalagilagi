@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pilih Kategori</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+
+  <label for="kategori" class="form-label">Kategori</label>
+  <select id="kategori" class="form-select mb-4">
+    <option value="">-- Pilih Kategori --</option>
+    <optgroup label="SEPUTAR AL-QUR'AN">
+      <option value="TAJWID">TAJWID</option>
+      <option value="TAFSIR">TAFSIR</option>
+    </optgroup>
+    <option value="AL-HADIST">AL-HADIST</option>
+    <option value="AQIDAH">AQIDAH</option>
+    <optgroup label="SERBA SERBI">
+      <option value="MAKAN">MAKAN</option>
+      <option value="MINUM">MINUM</option>
+    </optgroup>
+  </select>
+
+  <div id="hasil"></div>
+
+  <script type="module">
+    // 🔌 Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    // 🔐 Konfigurasi Firebase
+    const firebaseConfig = {
+      apiKey: "API_KEY",
+      authDomain: "PROJECT_ID.firebaseapp.com",
+      projectId: "PROJECT_ID",
+      storageBucket: "PROJECT_ID.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
+
+    // 🚀 Inisialisasi Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // 🔍 Ambil elemen
+    const kategoriSelect = document.getElementById("kategori");
+    const hasilDiv = document.getElementById("hasil");
+
+    // 📌 Event ketika kategori dipilih
+    kategoriSelect.addEventListener("change", async () => {
+      const kategori = kategoriSelect.value;
+      hasilDiv.innerHTML = "<p>Loading...</p>";
+
+      if (!kategori) {
+        hasilDiv.innerHTML = "<p>Silakan pilih kategori terlebih dahulu.</p>";
+        return;
+      }
+
+      try {
+        // 🔍 Query ke Firestore
+        const q = query(collection(db, "masalah"), where("kategori", "==", kategori));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+          hasilDiv.innerHTML = `<p>Tidak ada data untuk kategori <strong>${kategori}</strong>.</p>`;
+          return;
+        }
+
+        // 💡 Tampilkan data
+        let output = "";
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          output += `
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">${data.judul}</h5>
+                <p class="card-text">${data.deskripsi}</p>
+              </div>
+            </div>
+          `;
+        });
+        hasilDiv.innerHTML = output;
+
+      } catch (error) {
+        console.error("Gagal mengambil data:", error);
+        hasilDiv.innerHTML = "<p>Terjadi kesalahan saat mengambil data.</p>";
+      }
+    });
+  </script>
+</body>
+</html>
